@@ -15,6 +15,7 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @can('has.role', 'ROLE_TENANT')
 
                     <x-nav-link :href="route('admin.products.index')" :active="request()->routeIs('admin.products.*')">
                         {{ __('Produtos') }}
@@ -23,6 +24,14 @@
                     <x-nav-link :href="route('admin.categories.index')" :active="request()->routeIs('admin.categories.*')">
                         {{ __('Categorias') }}
                     </x-nav-link>
+                    @endcan
+
+                    @can('has.role', 'ROLE_ADMIN')
+
+                    <x-nav-link :href="route('admin.products.index')" :active="request()->routeIs('admin.products.*')">
+                        {{ __('Cobranças') }}
+                    </x-nav-link>
+                    @endcan
                 </div>
             </div>
 

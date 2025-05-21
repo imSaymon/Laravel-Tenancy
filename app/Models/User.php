@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Role;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -43,4 +44,23 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //relations
+    public function orders()
+    {
+        return $this->hasMany(Order::class)->orderBy('id', 'DESC');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    //ACL
+    public function hasRole(string $role): bool
+    {
+        $role = Role::whereRole($role)->first();
+        if(!$role) return false;
+        return $this->role_id === $role->id;
+    }
 }

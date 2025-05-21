@@ -5,7 +5,6 @@ use Illuminate\Session\SessionManager as Session;
 
 class CartService
 {
-
     const CART_KEY = 'cart';
 
     public function __construct(private Session $session)
@@ -44,10 +43,10 @@ class CartService
 
     public function clear()
     {
-        $this->session->forget(self::CART_KEY);
+        $this->session->forget([self::CART_KEY, 'shipping_value']);
     }
 
-    private function itemExistsInCart($item): bool
+    public function itemExistsInCart($item): bool
     {
         $items = $this->session->get(self::CART_KEY);
 
