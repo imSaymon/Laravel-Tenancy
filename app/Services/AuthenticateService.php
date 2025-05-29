@@ -14,14 +14,14 @@ class AuthenticateService
     public function login($credentials)
     {
         $findUser = $this->user->where('store_id', $credentials['store_id'])
-                         ->where('tenant_id', $credentials['tenant_id'])
-                         ->where('email', $credentials['email'])
-                         ->first();
+            ->where('tenant_id', $credentials['tenant_id'])
+            ->where('email', $credentials['email'])
+            ->first();
 
-        if(!$findUser)
+        if (!$findUser)
             throw new UnauthorizedHttpException("Invalid Credentials");
 
-        if(!Hash::check($credentials['password'], $findUser->password))
+        if (!Hash::check($credentials['password'], $findUser->password))
             throw new UnauthorizedHttpException("Invalid Credentials");
 
         auth()->login($findUser);

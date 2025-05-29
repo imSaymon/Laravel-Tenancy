@@ -17,12 +17,9 @@ class TenantControlAccessRoles
      */
     public function handle(Request $request, Closure $next, string $role)
     {
-        if(Gate::allows('has.role', $role)) {
+        if (Gate::allows('has.role', $role)) {
             \abort(403, 'FORBIDDEN');
         };
-        //Tenant customer: Não pode acessar o painel de gerenciamento
-        //Tenant: acessa o painel de gerenciamento para o gerenciamento de seus clientes
-        //Admin: gerencia o projeto tenant, deve ter o gerenciamento dos seus tenants e do sistema
         return $next($request);
     }
 }

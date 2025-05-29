@@ -10,16 +10,13 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function __construct(private CartService $cartService, private Store $store, private ShippingOption $shippingOption)
-    {
-    }
+    public function __construct(private CartService $cartService, private Store $store, private ShippingOption $shippingOption) {}
 
     public function index()
     {
         $cart = $this->cartService->all();
         $shippings = $this->shippingOption->all();
         return view('front.cart', compact('cart', 'shippings'));
-
     }
 
     public function add($subdomain, $product)

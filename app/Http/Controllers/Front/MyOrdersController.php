@@ -11,10 +11,10 @@ class MyOrdersController extends Controller
     public function index($subdomain)
     {
         $userOrders = Store::whereSubdomain($subdomain)
-        ->first()
-        ->customers()
-        ->find(\auth()->id())
-        ->orders;
+            ->first()
+            ->customers()
+            ->find(\auth()->id())
+            ->orders;
 
         return view('front.my-orders', compact('userOrders'));
     }

@@ -13,14 +13,14 @@ class CheckoutController extends Controller
 {
     public function checkout($subdomain, CartService $cartService)
     {
-        if(!$cartService->all()) abort(500);
+        if (!$cartService->all()) abort(500);
 
         return view('front.checkout');
     }
 
     public function proccess($subdomain, CartService $cartService, Request $request, Order $order)
     {
-        if(!$cartService->all()) abort(500);
+        if (!$cartService->all()) abort(500);
 
         $order->create([
             'user_id' => auth()->id(),

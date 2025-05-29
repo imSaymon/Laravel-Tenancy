@@ -42,14 +42,6 @@ class CategoryController extends Controller
     public function store(Request $request, Store $store)
     {
         $data = $request->all();
-
-
-        // if ($store != null) {
-        //     $store->categories();
-        // } else {
-        //     // Lidar com o caso em que a variável é null
-        //     echo "Erro: A variável está null";
-        // }
         $store->first()->categories()->create($data);
 
         session()->flash('message', ['type' => 'success', 'body' => 'Sucesso ao cadastrar categoria']);

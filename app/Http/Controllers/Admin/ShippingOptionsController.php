@@ -9,9 +9,7 @@ use App\Http\Controllers\Controller;
 
 class ShippingOptionsController extends Controller
 {
-    public function __construct(private ShippingOption $shipping)
-    {
-    }
+    public function __construct(private ShippingOption $shipping) {}
 
     /**
      * Display a listing of the resource.

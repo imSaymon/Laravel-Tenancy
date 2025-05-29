@@ -25,7 +25,6 @@ class TenantInSessionListener
      */
     public function handle($event)
     {
-        //FILTRANDO PARA QUE POSSA EXIBIR APENAS O CONTEUDO QUE PERTENCE A ESSE TENANT
         \session()->put('tenant', \auth()->user()->tenant_id);
     }
 }

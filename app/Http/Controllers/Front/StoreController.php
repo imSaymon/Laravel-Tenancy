@@ -10,8 +10,8 @@ class StoreController extends Controller
     public function index($subdomain, Store $store)
     {
         $store = $store->whereSubdomain($subdomain)
-        ->with('products')
-        ->first();
+            ->with('products')
+            ->first();
 
         return view('front.home', compact('store'));
     }

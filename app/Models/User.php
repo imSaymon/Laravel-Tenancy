@@ -56,11 +56,10 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
-    //ACL
     public function hasRole(string $role): bool
     {
         $role = Role::whereRole($role)->first();
-        if(!$role) return false;
+        if (!$role) return false;
         return $this->role_id === $role->id;
     }
 }
